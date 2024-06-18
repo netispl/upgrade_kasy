@@ -1,0 +1,22 @@
+---
+
+- name: Dodanie auth do repo
+  blockinfile:
+    path: /etc/apt/auth.conf.d/repo.conf
+    create: yes
+    block: |
+        machine {{ repo_url }}
+        login {{ repo_login }}
+        password {{ repo_password }}
+
+- name: Dodanie klucza do apta
+  apt_key:
+    data: "{{ netis_repo_key }}"
+    #data: "{{ lookup('file', '/tmp/netis_repo_key.pub') }}"
+    state: present
+    keyring: /etc/apt/trusted.gpg.d/netis.gpg
+
+- apt_repository:
+    repo: "deb [signed-by=/etc/apt/trusted.gpg.d/netis.gpg arch=amd64] {{ repo_url }} {{ ansible_distribution_release }} main"
+    state: present
+    filename: repo

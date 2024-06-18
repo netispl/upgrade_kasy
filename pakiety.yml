@@ -1,0 +1,50 @@
+---
+
+- name: Instaluje wersje Kasneta
+  debug:
+    msg: "{{ kasnet_ver | regex_replace('-') }}r{{ kasnet_rev }}"
+
+- name: Instaluje wersje xKasneta
+  debug:
+    msg: "{{ xkasnet_ver | regex_replace('-') }}r{{ xkasnet_rev }}"
+
+- name: Wylaczenie aktualizacji apta podczas instalacji
+  systemd:
+     state: stopped
+     name: "{{ item }}"
+     enabled: no
+  loop:
+     - apt-daily.service
+     - apt-daily.timer
+     - apt-daily-upgrade.timer
+     - unattended-upgrades.service 
+
+- name: Installacja paczek kasneta
+  apt:
+    state: present
+    update_cache: yes
+    name: 
+      - "kasnet-server-kasa-{{ kasnet_ver }}={{ kasnet_ver | regex_replace('-') }}r{{ kasnet_rev }}~{{ ansible_distribution_release }}-1"
+      - "kasnet-src-kasa-{{ kasnet_ver }}={{ kasnet_ver | regex_replace('-') }}r{{ kasnet_rev }}~{{ ansible_distribution_release }}-1"
+      - "kasnet-tools-kasa-{{ kasnet_ver }}={{ kasnet_ver | regex_replace('-') }}r{{ kasnet_rev }}~{{ ansible_distribution_release }}-1"
+      - "kasnet-libwaga-kasa-{{ kasnet_ver }}={{ kasnet_ver | regex_replace('-') }}r{{ kasnet_rev }}~{{ ansible_distribution_release }}-1"
+      - "kasnet-config-kasa-{{ kasnet_ver }}={{ kasnet_ver | regex_replace('-') }}r{{ kasnet_rev }}~{{ ansible_distribution_release }}-1"
+      - "kasnet-monitor-kasa-{{ kasnet_ver }}={{ kasnet_ver | regex_replace('-') }}r{{ kasnet_rev }}~{{ ansible_distribution_release }}-1"
+
+- name: Installacja paczek xkasneta
+  apt:
+    state: present
+    update_cache: yes
+    name: 
+      - "xkasnet-client-{{ xkasnet_ver }}={{ xkasnet_ver }}r{{ xkasnet_rev }}~{{ ansible_distribution_release }}-1"
+      - "xkasnet-libnative-jni-{{ xkasnet_ver }}={{ xkasnet_ver }}r{{ xkasnet_rev }}~{{ ansible_distribution_release }}-1"
+      - xinput-calibrator
+      - x-pos-launcher
+
+- name: Instalacja dodatkowych pakietow xkasneta
+  apt:
+    state: present
+    update_cache: no
+    name: 
+      - "{{ dodatkowe_pakiety_xkasnet }}-{{ xkasnet_ver }}={{ xkasnet_ver }}r{{ xkasnet_rev }}~{{ ansible_distribution_release }}-1"
+  when: dodatkowe_pakiety_xkasnet is defined
