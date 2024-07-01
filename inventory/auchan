@@ -100,19 +100,19 @@ auchan-s636-k5
 auchan-s646-k3-sco-selfnet
 
 
-[auchan-kasy-sco-wincor]
-auchan-s640-k4-sco-wincor kasasco31
-auchan-s640-k5-sco-wincor kasasco32
-#auchan-s642-k5-sco-wincor
-auchan-s642-k6-sco-wincor kasasco31
-#auchan-s642-k7-sco-wincor
-auchan-s642-k8-sco-wincor kasasco33
-auchan-s639-k4-sco-wincor kasasco31
-auchan-s639-k5-sco-wincor kasasco32
-auchan-s639-k6-sco-wincor kasasco33
-auchan-s633-k10-sco-wincor kasasco31
-auchan-s633-k11-sco-wincor kasasco32
-auchan-s634-k10-sco-wincor kasasco31
-auchan-s634-k11-sco-wincor kasasco32
+#[auchan-kasy-sco-wincor]
+#auchan-s640-k4-sco-wincor kasasco31
+#auchan-s640-k5-sco-wincor kasasco32
+##auchan-s642-k5-sco-wincor
+#auchan-s642-k6-sco-wincor kasasco31
+##auchan-s642-k7-sco-wincor
+#auchan-s642-k8-sco-wincor kasasco33
+#auchan-s639-k4-sco-wincor kasasco31
+#auchan-s639-k5-sco-wincor kasasco32
+#auchan-s639-k6-sco-wincor kasasco33
+#auchan-s633-k10-sco-wincor kasasco31
+#auchan-s633-k11-sco-wincor kasasco32
+#auchan-s634-k10-sco-wincor kasasco31
+#auchan-s634-k11-sco-wincor kasasco32
 
 
