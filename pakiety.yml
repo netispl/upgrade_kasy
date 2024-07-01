@@ -8,6 +8,8 @@
   debug:
     msg: "{{ xkasnet_ver | regex_replace('-') }}r{{ xkasnet_rev }}"
 
+- pause:
+
 - name: Wylaczenie aktualizacji apta podczas instalacji
   systemd:
      state: stopped
